@@ -6,7 +6,7 @@ function App() {
   const [index, setIndex] = useState(1)
   const gatdata = async () => {
 
-    const data = await axios.get(`https://picsum.photos/v2/list?page=${index}&limit=14`)
+    const data = await axios.get(`https://picsum.photos/v2/list?page=${index}&limit=10`)
     setUserData(data.data)
     console.log(data.data)
 
@@ -18,24 +18,24 @@ function App() {
   let print = <h3 className='text-xs text-gray-300 font-semibold absolute top-1/2 left-1/2 -translate-x-1/2  -translate-y-1/2'>Loading....</h3>
   if (userData.length > 0) {
     print = userData.map(function (elem, idex) {
-      return <div key={idex}>
+      return <div key={idex} >
         <Card elem={elem}/>
       </div>
     })
   }
 
   return (
-    <div className='bg-black p-4 overflow-auto h-screen text-white'>
+    <div className='bg-black  px-2 py-4 overflow-auto h-screen text-white'>
       
 
-      <div className='flex h-[80%] flex-wrap gap-4'>{print}</div>
-      <div className='flex justify-center gap-6 items-center p-4'>
+      <div className='flex h-[138vh] sm:h-[90vh] md:h-[70vh] text-center  justify-between flex-wrap  gap-2 '>{print}</div>
+      <div className='flex realtive  justify-center gap-6 items-center p-4'>
         <button onClick={()=>{if(index>1){
           setIndex(index-1)
           setUserData([])
         }}}
         style={{ opacity:index===1 ? 0.6 :1      }}
-          className='bg-amber-300 text-black cursor-pointer active:scale-90  rounded px-4 py-2 font-semibold'>
+          className=' bg-amber-300 text-black cursor-pointer active:scale-90  rounded px-4 py-2 font-semibold'>
           Prev
         </button>
         <h4>Page {index}</h4>
